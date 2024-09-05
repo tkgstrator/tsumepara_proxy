@@ -77,7 +77,7 @@ app.openapi(
       case Format.KI2:
         return c.text(exportKI2(object.record, {}))
       default:
-        throw new HTTPException(400, { message: '不正な棋譜形式です' })
+        return c.text(exportKIF(object.record))
     }
   }
 )
