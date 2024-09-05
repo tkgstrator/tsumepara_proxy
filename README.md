@@ -1,6 +1,14 @@
-## Hono + Cloudflare Workers
+## Tsumepara Proxy
 
-Cloudflare Workersで動作するHonoを利用した軽量Web APIフレームワークのテンプレートレポジトリです.
+詰将棋パラダイスで公開されている詰将棋データファイルを指定した棋譜形式で取得します.
+
+### 対応形式
+
+- [x] KIF
+- [x] CSA
+- [x] KI2
+
+> CSA形式では作者名などの一部のメタデータが失われてしまうのでご注意ください.
 
 ### 技術スタック
 
