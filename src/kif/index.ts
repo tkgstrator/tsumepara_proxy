@@ -7,7 +7,7 @@ import type { Context } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import type { JSX } from 'hono/jsx/jsx-runtime'
 import { ssgParams } from 'hono/ssg'
-import { exportCSA, exportKI2, exportKIF } from 'tsshogi'
+import { exportCSA, exportJKF, exportJKFString, exportKI2, exportKIF } from 'tsshogi'
 
 export const app = new Hono<{ Bindings: Bindings }>()
 
@@ -76,6 +76,10 @@ app.openapi(
         )
       case Format.KI2:
         return c.text(exportKI2(object.record, {}))
+      case Format.SFEN:
+        return c.text(object.record.sfen)
+      case Format.JKF:
+        return c.text(exportJKFString(object.record))
       default:
         return c.text(exportKIF(object.record))
     }
