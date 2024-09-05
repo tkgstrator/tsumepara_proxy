@@ -5,10 +5,15 @@ import { cors } from 'hono/cors'
 import { csrf } from 'hono/csrf'
 import { HTTPException } from 'hono/http-exception'
 import { logger } from 'hono/logger'
+import { app as kif } from './kif'
 import type { Bindings } from './utils/bindings'
 import { reference, specification } from './utils/docs'
 import { scheduled } from './utils/handler'
 
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
 const app = new Hono<{ Bindings: Bindings }>()
 
 app.use(logger())
@@ -23,6 +28,7 @@ app.onError((err, c) => {
   console.error(err)
   return c.text('Internal Server Error', 500)
 })
+app.route('/kif', kif)
 
 export default {
   port: 3000,

@@ -1,5 +1,5 @@
 services:
-  hono:
+  tsumepara_proxy:
     build:
       context: .
       dockerfile: Dockerfile
