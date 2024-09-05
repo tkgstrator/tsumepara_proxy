@@ -21,6 +21,7 @@ app.use(csrf())
 app.use('*', cors())
 app.doc('/specification', specification)
 app.get('/docs', apiReference(reference))
+app.notFound((c) => c.redirect('/docs'))
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
     return c.json({ message: err.message }, err.status)
